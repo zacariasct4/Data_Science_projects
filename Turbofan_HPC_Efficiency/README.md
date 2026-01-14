@@ -1,32 +1,60 @@
-## Variables (Turbofan / HPC efficiency)
+# Turbofan HPC Efficiency Prediction (EDA + Multicollinearity Analysis)
 
-This dataset contains turbofan performance and cycle variables used to predict **Isentr.HPCEfficiency** (isentropic efficiency of the High-Pressure Compressor, HPC).
+- **Goal:** explore whether we can predict **isentropic High-Pressure Compressor (HPC) efficiency** from turbofan operating/performance variables.
+- **Type:** regression / tabular data.
+- **Current status:** exploratory analysis + multicollinearity diagnostics (correlation + VIF). No final ML model shipped yet.
 
-### Target
-- **Isentr.HPCEfficiency (float)**: Isentropic efficiency of the high-pressure compressor (how close the real compression process is to an ideal isentropic process). Higher is better.
+---
 
-### Thrust & propulsive performance
-- **NetThrust_kN (float)**: Total net thrust produced by the engine (kN).
-- **CoreNozzleGrossThrust_kN (float)**: Gross thrust contribution from the core (hot stream) nozzle (kN).
-- **BypassNozzleGrossThrust_kN (float)**: Gross thrust contribution from the bypass (cold stream) nozzle (kN).
-- **Sp.FuelConsumption_g/(kN*s) (float)**: Thrust Specific Fuel Consumption (TSFC), i.e., grams of fuel per kN of thrust per second. Lower is better.
-- **SpecificThrust_m/s (float)**: Thrust per unit air mass flow (often reported in m/s in engine datasets).
+## What’s inside
 
-### Nozzle flow variables
-- **CoreNozzleVel.V8_m/s (float)**: Exhaust jet velocity at the core nozzle exit (station V8), in m/s.
-- **CoreNozzlePressureRatio (float)**: Pressure ratio across/at the core nozzle (nozzle pressure ratio).
-- **BypassNozzleVel.V18_m/s (float)**: Exhaust jet velocity at the bypass nozzle exit (station V18), in m/s.
-- **BypassNozzlePressureRatio (float)**: Pressure ratio across/at the bypass nozzle (nozzle pressure ratio).
+- `data/Turbofan_HPC_Efficiency.csv` from kaggle https://www.kaggle.com/datasets/nicolascaparroz/turbofan-hpc-efficiency 
+  - **11,971 rows × 17 columns**
+  - **No missing values**
+  - All variables are **float**
+- `src/main.ipynb`
+  - EDA (distributions, boxplots)
+  - Outlier capping (IQR method)
+  - Correlation heatmap
+  - VIF-based feature elimination
+- `variable_glossary.pdf`
+  - Short descriptions of each variable
+- `requirements.txt`
+  - Environment snapshot (`pip freeze`)
 
-### Combustion & overall pressure ratios
-- **BurnerEfficiency (float)**: Combustor (burner) efficiency; fraction of chemical energy effectively transferred to the flow.
-- **EnginePressureRatioP5/P2 (float)**: Engine Pressure Ratio (EPR), defined here as the pressure ratio between station P5 and P2.
+---
 
-### Spools & fuel flow
-- **HPSpoolSpeed_RPM (float)**: High-pressure spool rotational speed (RPM).
-- **LPSpoolSpeed_RPM (float)**: Low-pressure spool rotational speed (RPM).
-- **FuelFlow_kg/s (float)**: Fuel mass flow rate (kg/s).
+## Dataset
 
-### Low-pressure turbine (LPT) exit conditions
-- **LPTExitPressureP5_kPA (float)**: Pressure at the exit of the low-pressure turbine (station P5), in kPa.
-- **LPTExitTemperatureT5_K (float)**: Temperature at the exit of the low-pressure turbine (station T5), in K.
+- **Target (y):** `Isentr.HPCEfficiency`
+- **Features (X):**
+  - `NetThrust_kN`
+  - `CoreNozzleGrossThrust_kN`
+  - `BypassNozzleGrossThrust_kN`
+  - `Sp.FuelConsumption_g/(kN*s)`
+  - `SpecificThrust_m/s`
+  - `CoreNozzleVel.V8_m/s`
+  - `CoreNozzlePressureRatio`
+  - `BypassNozzleVel.V18_m/s`
+  - `BypassNozzlePressureRatio`
+  - `BurnerEfficiency`
+  - `EnginePressureRatioP5/P2`
+  - `HPSpoolSpeed_RPM`
+  - `LPSpoolSpeed_RPM`
+  - `FuelFlow_kg/s`
+  - `LPTExitPressureP5_kPA`
+  - `LPTExitTemperatureT5_K`
+
+See `variable_glossary.pdf` for a quick explanation of each feature.
+
+---
+
+## Quickstart
+
+### 1) Create and activate a virtual environment
+```bash
+python -m venv .venv
+# Windows
+.venv\Scripts\activate
+# macOS/Linux
+source .venv/bin/activate
