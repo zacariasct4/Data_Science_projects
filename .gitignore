@@ -1,5 +1,12 @@
-**/.venv/
-**/.vscode/
+.vscode/
+.venv/
+
 __pycache__/
-*.pyc
+*.py[cod]
+
 .env
+.env.*
+!.env.example
+
+*.zip
+pump_predicitve_maintenance/data/sensor.csv
