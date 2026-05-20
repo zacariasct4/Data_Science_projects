@@ -1,0 +1,7 @@
+eval_set,model,feature_set,sampling_strategy,neg_pos_ratio,n_train,train_positive_rate,threshold,eval_pr_auc,eval_roc_auc,precision,recall,f1,tp,fp,fn,tn,total_events,detected_events,missed_events,event_recall,total_alerts,correct_alerts,false_alerts,false_alerts_per_day,event_alert_precision,full_event_detection,alerts_per_detected_event
+validation,focal_mlp,E_low_corr,no_undersampling,,81865,0.002931655774751115,0.01,0.0011722075821325342,0.36448762664009304,0.0017747858017135862,0.9666666666666667,0.0035430665852168603,58,32622,2,7518,1,1,0,1.0,617,1,616,22.066220552750067,0.0016207455429497568,1,617.0
+validation,mlp,E_low_corr,no_undersampling,,81865,0.002931655774751115,0.59,0.0015836645959773957,0.5475770220893539,0.0,0.0,0.0,0,0,60,40140,1,0,1,0.0,0,0,0,0.0,0.0,0,inf
+validation,mlp_pca,E_low_corr,no_undersampling,,81865,0.002931655774751115,0.06999999999999999,0.0007645959961143256,0.006991363560870282,0.0,0.0,0.0,0,0,60,40140,1,0,1,0.0,0,0,0,0.0,0.0,0,inf
+validation,mlp,B_raw_plus_missing,no_undersampling,,81865,0.002931655774751115,0.44,0.0007640637351844438,0.007898604882909822,0.0,0.0,0.0,0,0,60,40140,1,0,1,0.0,0,0,0,0.0,0.0,0,inf
+validation,mlp_pca,B_raw_plus_missing,no_undersampling,,81865,0.002931655774751115,0.05,0.0007638638229466303,0.005844959309084876,0.0,0.0,0.0,0,0,60,40140,1,0,1,0.0,0,0,0,0.0,0.0,0,inf
+validation,focal_mlp,B_raw_plus_missing,no_undersampling,,81865,0.002931655774751115,0.5700000000000001,0.000763449574270572,0.005668493605713337,0.0,0.0,0.0,0,0,60,40140,1,0,1,0.0,0,0,0,0.0,0.0,0,inf

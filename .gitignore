@@ -1,12 +1,37 @@
+﻿# VS Code
 .vscode/
-.venv/
+**/.vscode/
 
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Python
 __pycache__/
 *.py[cod]
+*.pyo
 
+# Jupyter
+.ipynb_checkpoints/
+
+# Environment variables
 .env
 .env.*
 !.env.example
 
+# Archives
 *.zip
-pump_predicitve_maintenance/data/sensor.csv
+
+# Local trained model artifacts
+**/models/*.pkl
+**/models/*.keras
+**/models/*.h5
+**/models/*.joblib
+
+# Large/local datasets
+pump_predictive_maintenance/data/sensor.csv
+
+# OS files
+.DS_Store
+Thumbs.db
