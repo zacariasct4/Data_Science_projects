@@ -1,4 +1,4 @@
-﻿# VS Code
+# VS Code
 .vscode/
 **/.vscode/
 
@@ -29,9 +29,7 @@ __pycache__/
 **/models/*.h5
 **/models/*.joblib
 
-# Large/local datasets
-pump_predictive_maintenance/data/sensor.csv
-
 # OS files
 .DS_Store
 Thumbs.db
+pump_predictive_maintenance/data/sensor.csv
