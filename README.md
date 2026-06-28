@@ -1,8 +1,8 @@
 # Data Science Projects
 
-This repository contains a collection of data science, machine learning and predictive maintenance projects developed as part of my learning path and personal portfolio.
+This repository contains a collection of data science, machine learning and analytics projects developed as part of my learning path and personal portfolio.
 
-The projects cover different types of problems, including classification, regression, clustering, exploratory data analysis, predictive maintenance, industrial monitoring and energy analytics.
+The projects cover different types of problems, including classification, regression, clustering, exploratory data analysis, predictive maintenance, industrial monitoring, renewable energy analytics and customer segmentation.
 
 Most projects are structured as self-contained folders, usually including:
 
@@ -13,7 +13,7 @@ Most projects are structured as self-contained folders, usually including:
 
 ## Repository structure
 
-```text
+~~~text
 Data_Science_projects/
 │
 ├── CARE_SCADA_Wind_Turbine/
@@ -26,7 +26,7 @@ Data_Science_projects/
 ├── Wind_Turbine_Scada/
 ├── .gitignore
 └── README.md
-```
+~~~
 
 ## Projects
 
@@ -37,6 +37,15 @@ Project related to wind turbine SCADA data analysis.
 The goal is to work with operational data from wind energy systems and extract useful patterns for monitoring, performance assessment or anomaly detection.
 
 This project belongs to the industrial data analysis and renewable energy domain.
+
+Typical use case:
+
+* wind turbine SCADA data analysis;
+* renewable energy monitoring;
+* anomaly detection;
+* operational performance analysis.
+
+---
 
 ### `Conveyor_Fault_Prediction`
 
@@ -51,19 +60,72 @@ Typical use case:
 * mechanical condition monitoring;
 * industrial predictive maintenance.
 
+---
+
 ### `customer_segmentation`
 
-Customer segmentation project based on unsupervised learning techniques.
+Customer segmentation project based on unsupervised learning techniques applied to transactional retail data.
 
-The goal is to group customers according to behavioural, demographic or transactional variables, depending on the available dataset. This type of project is useful for marketing analytics, customer profiling and business decision-making.
+The project uses the Online Retail dataset, which contains invoice-level transactional information such as invoice number, stock code, product description, quantity, invoice date, unit price, customer identifier and country. The main objective is to transform raw transaction-level data into a customer-level analytical dataset and identify meaningful customer groups according to purchasing behaviour.
+
+The analysis is based on an extended RFM approach using the following customer-level variables:
+
+* `recency`: number of days since the customer's last purchase;
+* `frequency`: number of unique invoices associated with the customer;
+* `monetary`: total amount spent by the customer;
+* `total_quantity`: total number of purchased units;
+* `unique_products`: number of different products purchased.
+
+Before modelling, the dataset is cleaned to keep only valid purchase transactions. Rows with missing customer identifiers, cancelled invoices, negative or zero quantities, non-positive prices and non-product transaction codes are removed. A new variable, `total_money`, is created as the product of quantity and unit price.
+
+Since customer purchasing behaviour is highly skewed, a logarithmic transformation is applied to reduce the effect of extreme values. The variables are then standardised before applying clustering algorithms, ensuring that all features contribute fairly to the distance-based models.
+
+Several unsupervised learning techniques are tested and compared:
+
+* K-Means Clustering;
+* Agglomerative Clustering;
+* Gaussian Mixture Models;
+* DBSCAN.
+
+The final analysis shows that K-Means provides the clearest and most interpretable segmentation. The two-cluster solution achieves the best silhouette score and separates customers into two broad behavioural groups:
+
+* low-value customers, with higher recency, lower frequency, lower monetary value and lower product variety;
+* high-value customers, with more recent purchases, higher frequency, greater product variety and a much larger contribution to total revenue.
+
+Additional K-Means configurations with three, four and five clusters are also analysed. Although these more granular solutions obtain lower silhouette scores, they provide a more detailed business view by separating inactive low-value customers, medium-value regular customers, recent customers with potential and very high-value customers.
+
+The project concludes that the two-cluster solution is the most robust from a statistical point of view, while four- or five-cluster alternatives may be more actionable for marketing, retention and customer relationship management strategies.
+
+Current contents include:
+
+* `src/main.ipynb`: main notebook with data cleaning, feature engineering, exploratory analysis, clustering and final conclusions;
+* `requirements.txt`: Python environment used for the project.
 
 Typical use case:
 
-* exploratory data analysis;
-* feature preprocessing;
+* customer segmentation;
+* RFM analysis;
 * clustering;
+* unsupervised learning;
 * customer profiling;
-* interpretation of customer groups.
+* marketing analytics;
+* business decision-making.
+
+Main techniques used:
+
+* data cleaning;
+* feature engineering;
+* exploratory data analysis;
+* logarithmic transformation;
+* standardisation;
+* K-Means;
+* Agglomerative Clustering;
+* Gaussian Mixture Models;
+* DBSCAN;
+* silhouette analysis;
+* cluster profiling.
+
+---
 
 ### `predictive_maintenance`
 
@@ -77,6 +139,8 @@ Typical use case:
 * anomaly or failure detection;
 * evaluation of predictive models;
 * industrial maintenance decision support.
+
+---
 
 ### `pump_predictive_maintenance`
 
@@ -101,6 +165,8 @@ Typical use case:
 * model selection under class imbalance;
 * operational evaluation of false alerts and detected events.
 
+---
+
 ### `Solar_power_generation`
 
 Project related to solar power generation data.
@@ -114,9 +180,11 @@ Typical use case:
 * renewable energy monitoring;
 * solar generation performance analysis.
 
+---
+
 ### `Turbofan_HPC_Efficiency`
 
-Regression and exploratory analysis project focused on predicting the isentropic efficiency of a turbofan High-Pressure Compressor (HPC) from operating and performance variables.
+Regression and exploratory analysis project focused on predicting the isentropic efficiency of a turbofan High-Pressure Compressor from operating and performance variables.
 
 The current version is focused on:
 
@@ -139,6 +207,8 @@ Typical use case:
 * feature correlation analysis;
 * multicollinearity assessment;
 * preparation for predictive modelling.
+
+---
 
 ### `Wind_Turbine_Scada`
 
@@ -172,46 +242,52 @@ Some projects may include additional libraries depending on the specific modelli
 
 Clone the repository:
 
-```bash
+~~~bash
 git clone https://github.com/zacariasct4/Data_Science_projects.git
 cd Data_Science_projects
-```
+~~~
 
 Each project is intended to be run independently. Enter the project folder you want to work with:
 
-```bash
+~~~bash
 cd project_folder_name
-```
+~~~
+
+For example, to run the customer segmentation project:
+
+~~~bash
+cd customer_segmentation
+~~~
 
 Create and activate a virtual environment:
 
-```bash
+~~~bash
 python -m venv .venv
-```
+~~~
 
 On Windows:
 
-```bash
+~~~bash
 .venv\Scripts\activate
-```
+~~~
 
 On macOS/Linux:
 
-```bash
+~~~bash
 source .venv/bin/activate
-```
+~~~
 
 Install the project dependencies:
 
-```bash
+~~~bash
 pip install -r requirements.txt
-```
+~~~
 
 Then open the corresponding notebook:
 
-```bash
+~~~bash
 jupyter notebook
-```
+~~~
 
 or use VS Code/JupyterLab.
 
@@ -231,13 +307,14 @@ This keeps the repository focused on source code, notebooks, documentation and r
 
 ## Current focus
 
-The repository is currently oriented toward applied data science projects with a strong emphasis on industrial and engineering use cases, especially:
+The repository is currently oriented toward applied data science projects with a strong emphasis on industrial, engineering and business analytics use cases, especially:
 
 * predictive maintenance;
 * fault detection;
 * renewable energy analytics;
 * mechanical and industrial monitoring;
 * regression and classification workflows;
+* clustering and customer segmentation;
 * exploratory data analysis and model validation.
 
 ## Author
